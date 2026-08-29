@@ -11,6 +11,7 @@ I am a senior data and analytics professional with 12+ years of experience deliv
 | Project | Business problem | Core technologies | Status |
 |---|---|---|---|
 | [Retail Sales Lakehouse](projects/retail-sales-lakehouse/) | Build a reliable, incremental analytics pipeline from raw transactions to business-ready KPIs | PySpark, Delta Lake, Medallion Architecture, data quality, pytest, GitHub Actions | Complete |
+| [FP&A Performance Management in Power BI](projects/fpa-power-bi-performance-management/) | Standardize Actual, Budget, Forecast, YTD, YTG, and full-year variance reporting | Power BI, DAX, Power Query, SQL, star schema, RLS | Complete |
 | [Azure Olympics Lakehouse](https://github.com/Shashidhara-KB/Azure) | Transform multi-file Olympics data into country, medal-efficiency, and gender-participation metrics | Azure Databricks, PySpark, Delta Lake, data quality, pytest, GitHub Actions | Complete |
 | Enterprise Knowledge Assistant | Ground LLM answers in governed enterprise documents with citations | Azure OpenAI, LangChain, RAG, vector search, evaluation | Planned |
 | Streaming Operations Monitor | Detect operational anomalies from event streams and serve near-real-time metrics | Spark Structured Streaming, Delta Lake, Power BI | Planned |
