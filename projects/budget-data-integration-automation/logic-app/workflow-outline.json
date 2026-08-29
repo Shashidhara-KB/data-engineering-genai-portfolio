@@ -1,0 +1,21 @@
+{
+  "name": "synthetic-budget-integration",
+  "trigger": {
+    "type": "Recurrence",
+    "frequency": "Day",
+    "interval": 1
+  },
+  "actions": [
+    "Create load-run identifier",
+    "Read approved budget-list rows",
+    "Insert rows through parameterized stored procedure",
+    "Validate staging row count and business keys",
+    "Execute dbo.usp_RefreshBudgetFinal",
+    "Write success or failure audit record"
+  ],
+  "security": {
+    "authentication": "Managed identity or secured connection reference",
+    "secrets_in_definition": false
+  },
+  "note": "This is a vendor-neutral portfolio outline, not an export from an employer environment."
+}
