@@ -32,5 +32,5 @@ projects/   Portfolio projects and documentation
 
 ## Contact
 
-- GitHub: [Shashidhar-Rolex](https://github.com/Shashidhar-Rolex)
+- GitHub: [Shashidhara-KB](https://github.com/Shashidhara-KB)
 - Focus: Senior Data Engineer / Data & GenAI Engineer
