@@ -1,0 +1,92 @@
+// Base measures
+[Finance Amount] :=
+SUM ( FactFinance[Amount] )
+
+[Actual] :=
+CALCULATE ( [Finance Amount], DimScenario[ScenarioCode] = "ACT" )
+
+[Budget] :=
+CALCULATE ( [Finance Amount], DimScenario[ScenarioCode] = "BUD" )
+
+[Forecast] :=
+CALCULATE ( [Finance Amount], DimScenario[ScenarioCode] = "FCST" )
+
+[Prior Year Actual] :=
+CALCULATE ( [Actual], DATEADD ( DimDate[Date], -1, YEAR ) )
+
+// Variance measures
+[Actual vs Budget] :=
+[Actual] - [Budget]
+
+[Actual vs Budget %] :=
+DIVIDE ( [Actual vs Budget], ABS ( [Budget] ) )
+
+[Actual vs Forecast] :=
+[Actual] - [Forecast]
+
+[Actual vs Forecast %] :=
+DIVIDE ( [Actual vs Forecast], ABS ( [Forecast] ) )
+
+[Actual vs Prior Year] :=
+[Actual] - [Prior Year Actual]
+
+[Actual vs Prior Year %] :=
+DIVIDE ( [Actual vs Prior Year], ABS ( [Prior Year Actual] ) )
+
+// Time intelligence
+[Actual YTD] :=
+TOTALYTD ( [Actual], DimDate[Date], "12/31" )
+
+[Budget YTD] :=
+TOTALYTD ( [Budget], DimDate[Date], "12/31" )
+
+[Forecast YTD] :=
+TOTALYTD ( [Forecast], DimDate[Date], "12/31" )
+
+[Budget YTG] :=
+VAR LastActualDate =
+    CALCULATE ( MAX ( FactFinance[PostingDate] ), DimScenario[ScenarioCode] = "ACT" )
+RETURN
+    CALCULATE (
+        [Budget],
+        FILTER ( ALL ( DimDate[Date] ), DimDate[Date] > LastActualDate )
+    )
+
+[Forecast YTG] :=
+VAR LastActualDate =
+    CALCULATE ( MAX ( FactFinance[PostingDate] ), DimScenario[ScenarioCode] = "ACT" )
+RETURN
+    CALCULATE (
+        [Forecast],
+        FILTER ( ALL ( DimDate[Date] ), DimDate[Date] > LastActualDate )
+    )
+
+[Full Year Outlook] :=
+[Actual YTD] + [Forecast YTG]
+
+[Outlook vs Budget] :=
+[Full Year Outlook] - [Budget]
+
+[Outlook vs Budget %] :=
+DIVIDE ( [Outlook vs Budget], ABS ( [Budget] ) )
+
+// Presentation helpers
+[Selected Comparison] :=
+SWITCH (
+    SELECTEDVALUE ( ComparisonSelector[Comparison], "Budget" ),
+    "Budget", [Actual vs Budget],
+    "Forecast", [Actual vs Forecast],
+    "Prior Year", [Actual vs Prior Year]
+)
+
+[Variance Status] :=
+VAR VarianceValue = [Selected Comparison]
+VAR FavorabilitySign = SELECTEDVALUE ( DimAccount[FavorabilitySign], 1 )
+RETURN
+    SWITCH (
+        TRUE (),
+        VarianceValue * FavorabilitySign > 0, "Favorable",
+        VarianceValue * FavorabilitySign < 0, "Unfavorable",
+        "On Plan"
+    )
+
