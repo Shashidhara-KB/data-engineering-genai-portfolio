@@ -4,7 +4,7 @@ Production-minded portfolio projects demonstrating Azure data engineering, lakeh
 
 ## About Me
 
-I am a senior data and analytics professional with 12+ years of experience delivering enterprise reporting and data solutions. My current focus is building scalable data platforms and AI-enabled applications using Python, SQL, PySpark, Azure Databricks, Delta Lake, Power BI, Azure OpenAI, and RAG.
+I am a data and analytics professional with 12+ years of experience delivering enterprise reporting and data solutions. My current focus is building scalable data platforms and AI-enabled applications using Python, SQL, PySpark, Azure Databricks, Delta Lake, Power BI, Azure OpenAI, and RAG.
 
 ## Projects
 
@@ -35,4 +35,4 @@ projects/   Portfolio projects and documentation
 ## Contact
 
 - GitHub: [Shashidhara-KB](https://github.com/Shashidhara-KB)
-- Focus: Senior Data Engineer / Data & GenAI Engineer
+- Focus: Data Engineer / GenAI Engineer
