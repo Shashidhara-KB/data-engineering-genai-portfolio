@@ -1,0 +1,22 @@
+[
+  {
+    "kpi_id": "net_sales",
+    "name": "Net Sales",
+    "definition": "Gross sales less approved discounts, rebates, and returns.",
+    "formula": "SUM(FactFinance[NetSalesAmount])",
+    "report_page": "Executive Summary",
+    "owner": "Commercial Finance",
+    "refresh_cadence": "Daily",
+    "source": "Synthetic Finance Model"
+  },
+  {
+    "kpi_id": "fte",
+    "name": "Full-Time Equivalent",
+    "definition": "Workforce capacity expressed relative to a standard full-time schedule.",
+    "formula": "SUM(FactWorkforce[FTE])",
+    "report_page": "Workforce Overview",
+    "owner": "Workforce Analytics",
+    "refresh_cadence": "Monthly",
+    "source": "Synthetic Workforce Model"
+  }
+]
