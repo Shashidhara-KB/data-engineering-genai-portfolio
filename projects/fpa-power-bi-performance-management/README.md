@@ -1,41 +1,21 @@
 # FP&A Performance Management in Power BI
 
-An enterprise-style Power BI solution for Actual, Budget, Forecast, variance, YTD, and full-year outlook reporting. The project uses a governed star schema, reusable DAX measures, parameterized Power Query, and row-level security patterns.
+**Status: Reference implementation**
 
-All data structures and examples are synthetic and contain no employer-confidential information.
+I created this project around a reporting problem I know well: finance teams need one model for Actual, Budget and Forecast, but the data usually arrives from different systems and at different levels of detail.
 
-## Business Problem
+This repository does not contain a finished PBIX file yet. It contains the model components I would use to build one: a synthetic SQL star schema, reusable DAX measures, parameterized Power Query and a dynamic RLS pattern.
 
-FP&A teams often combine monthly actuals, budgets, and forecasts from multiple systems and spreadsheets. Manual reconciliation creates inconsistent KPI definitions, slow month-end reporting, and limited drill-down from regional performance to accounts and cost centers.
+## What is included
 
-This project provides a reusable semantic-model design for management reporting with consistent scenario, time-intelligence, and variance logic.
+- `sql/finance_star_schema.sql` creates the finance fact table, supporting dimensions and synthetic seed data.
+- `dax/measures.dax` contains Actual, Budget, Forecast, YTD, YTG and variance measures.
+- `power-query/finance-model.m` shows a parameterized SQL connection pattern without credentials.
+- `security/rls-pattern.md` documents regional row-level security.
 
-## Architecture
+## Model grain
 
-```mermaid
-flowchart TD
-    A[ERP actuals] --> D[SQL finance model]
-    B[Budget inputs] --> D
-    C[Forecast submissions] --> D
-    D --> E[Power Query transformations]
-    E --> F[Power BI semantic model]
-    F --> G[Executive FP&A dashboard]
-    F --> H[Regional and cost-center analysis]
-```
-
-## Core Capabilities
-
-- Actual, Budget, Forecast, and Prior Year comparison
-- Monthly, YTD, YTG, and full-year outlook measures
-- Absolute and percentage variance with safe divide handling
-- Region, entity, cost center, account, and scenario drill-down
-- Management P&L hierarchy with configurable display order
-- Dynamic scenario selection
-- Row-level security by regional ownership
-- Parameterized SQL connection with no committed credentials
-- Import-model and incremental-refresh design guidance
-
-## Semantic Model
+The finance fact table stores one amount for each month, entity, account, cost centre, scenario and currency. Separate dimensions provide the reporting hierarchies for dates, entities, accounts, cost centres and scenarios.
 
 ```mermaid
 erDiagram
@@ -46,41 +26,22 @@ erDiagram
     DIM_SCENARIO ||--o{ FACT_FINANCE : scenario_key
 ```
 
-| Table | Grain / purpose |
-|---|---|
-| `FactFinance` | One amount per month, entity, account, cost center, scenario, and currency |
-| `DimDate` | Calendar and fiscal attributes for time intelligence |
-| `DimEntity` | Entity, country, and region hierarchy |
-| `DimAccount` | Management P&L hierarchy, KPI group, and display order |
-| `DimCostCenter` | Cost-center ownership and functional hierarchy |
-| `DimScenario` | ACT, BUD, Forecast, and Prior Year scenario metadata |
+## Report pages I would build
 
-## Repository Structure
+1. Executive summary with Net Sales, operating cost, EBITDA and outlook
+2. Actual versus Budget/Forecast variance analysis
+3. P&L matrix with monthly, YTD and YTG views
+4. Regional and entity drill-down
+5. Cost-centre review with trends and exceptions
 
-```text
-sql/finance_star_schema.sql       SQL Server dimensional model and synthetic seed data
-dax/measures.dax                  Reusable FP&A measure library
-power-query/finance-model.m       Parameterized Power Query transformations
-security/rls-pattern.md           Dynamic regional RLS design
-```
+## Current limitation
 
-## Suggested Report Pages
+Recruiters cannot yet see an actual dashboard because screenshots and a synthetic PBIX are not included. That is the next step for this project. I will add only visuals created from the synthetic model; no employer report, data or branding will be used.
 
-1. **Executive Summary** — Net sales, operating cost, EBITDA, and full-year outlook
-2. **Variance Analysis** — Actual vs Budget/Forecast waterfall and commentary
-3. **P&L Detail** — Hierarchical matrix with month, YTD, and YTG views
-4. **Regional Performance** — Region/entity comparison and contribution analysis
-5. **Cost Center Review** — Functional spending, trends, and exceptions
+## Design choices
 
-## Performance and Governance
+I kept the model as a single-direction star schema, placed scenario logic in reusable measures and separated access rules from report logic. For a large fact table, I would add incremental refresh and validate control totals before publishing.
 
-- Use a single-direction star schema and avoid fact-to-fact relationships.
-- Keep scenario logic in reusable measures instead of duplicating visuals.
-- Apply incremental refresh to the transaction fact when history is large.
-- Store credentials in the Power BI service or gateway—not in Power Query code.
-- Maintain an approved KPI dictionary and document measure ownership.
+## Interview summary
 
-## Résumé Entry
-
-> Designed an enterprise FP&A Power BI solution using a governed SQL star schema, reusable DAX time-intelligence and scenario measures, dynamic regional RLS, and parameterized Power Query to deliver Actual, Budget, Forecast, YTD, YTG, and full-year variance reporting.
-
+I can use this project to explain the full path from finance requirements to dimensional modelling, DAX, Power Query, security and report design, while keeping the public example independent of confidential company work.
