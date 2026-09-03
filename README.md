@@ -4,16 +4,16 @@
 
 This repository contains projects I use to practise and demonstrate data engineering, Power BI and GenAI concepts. Most examples are based on the kind of finance and reporting problems I know well, but all data and business names are synthetic or public.
 
-I have kept the projects at different levels of completion. The status column is deliberate: a **working example** has runnable code and tests; a **reference implementation** demonstrates a useful pattern; and a **design case study** documents how I would approach a larger solution.
+I have kept the projects at different levels of completion. A **working example** has runnable code and tests; a **reference implementation** demonstrates a useful pattern; and a **prototype** is an early implementation that I am still developing.
 
 ## Projects
 
 | Project | What is included | Status |
 |---|---|---|
+| [Finance Reporting Modernization](projects/finance-reporting-modernization/) | Runnable Bronze/Silver/Gold Spark job, quarantine, reconciliation, synthetic finance data and Power BI SQL view | Working example |
 | [Retail Sales Lakehouse](projects/retail-sales-lakehouse/) | PySpark transformations, data-quality quarantine, Delta merge and unit tests | Working example |
 | [Azure Olympics Lakehouse](https://github.com/Shashidhara-KB/Azure) | Public datasets, PySpark transformations, Gold metrics and tests | Working example |
 | [FP&A Performance Management](projects/fpa-power-bi-performance-management/) | SQL star schema, DAX, Power Query and an RLS pattern | Reference implementation |
-| [Finance Reporting Modernization](projects/finance-reporting-modernization/) | A PySpark medallion pattern for finance reporting data | Reference implementation |
 | [FTE & Workforce Analytics](projects/fte-workforce-analytics/) | Workforce transformations and example DAX measures | Reference implementation |
 | [Budget Data Integration](projects/budget-data-integration-automation/) | SQL staging/final pattern and a Logic Apps workflow outline | Reference implementation |
 | [FP&A Knowledge Assistant](projects/fpa-knowledge-assistant/) | A small local retriever plus the planned RAG architecture | Prototype |
@@ -22,17 +22,11 @@ I have kept the projects at different levels of completion. The status column is
 ## Repository layout
 
 ```text
-projects/
-  retail-sales-lakehouse/
-  fpa-power-bi-performance-management/
-  finance-reporting-modernization/
-  fte-workforce-analytics/
-  budget-data-integration-automation/
-  fpa-knowledge-assistant/
-  report-kpi-help-assistant/
-.github/workflows/
+projects/   Project code, sample data and documentation
+tests/      Cross-project automated tests
+.github/    CI and dependency configuration
 ```
 
-## How I use this repository
+## Current priorities
 
-I add code here only when I can explain the design choices and trade-offs. My next priorities are to add visual proof for the Power BI project, expand test coverage and turn the knowledge-assistant prototype into a runnable RAG application.
+I add code here only when I can explain the design choices and trade-offs. My next priorities are to add visual proof for the Power BI project and turn the knowledge-assistant prototype into a runnable RAG application.
