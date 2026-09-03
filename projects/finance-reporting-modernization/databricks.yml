@@ -1,0 +1,31 @@
+bundle:
+  name: finance-reporting-modernization
+
+resources:
+  jobs:
+    finance_reporting_pipeline:
+      name: finance-reporting-modernization
+      tasks:
+        - task_key: build_finance_layers
+          spark_python_task:
+            python_file: ../src/run_pipeline.py
+            parameters:
+              - --input
+              - ${var.input_path}
+              - --output
+              - ${var.output_path}
+              - --format
+              - delta
+          job_cluster_key: finance_cluster
+      job_clusters:
+        - job_cluster_key: finance_cluster
+          new_cluster:
+            spark_version: 15.4.x-scala2.12
+            node_type_id: Standard_DS3_v2
+            num_workers: 1
+
+variables:
+  input_path:
+    description: ADLS path containing finance extracts
+  output_path:
+    description: ADLS path for Bronze, Silver, Gold and control outputs
