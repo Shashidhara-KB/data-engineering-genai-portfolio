@@ -1,40 +1,24 @@
 # FP&A Knowledge Assistant
 
-Portfolio-safe reference design for a grounded finance knowledge assistant using Azure OpenAI, LangChain-style retrieval, SharePoint-style document ingestion, vector search, and Streamlit.
+**Status: Prototype**
 
-The sample implementation uses synthetic policy and reporting documents only.
+I started this project to explore a common FP&A support problem: process documents and KPI guidance exist, but users still spend time asking where to find an answer.
 
-## Use Cases
+The code currently provides a small, dependency-free retriever that ranks local text using token overlap and cosine similarity. It is useful for testing retrieval behaviour, but it is **not yet** an Azure OpenAI, LangChain or production RAG application.
 
-- Answer questions about reporting processes and timelines
-- Retrieve KPI definitions with citations
-- Support onboarding with grounded SOP guidance
-- Explain which report or page contains a required metric
-- Refuse unsupported answers when evidence is insufficient
+## What is implemented
 
-## Architecture
+- Text tokenization and term-frequency vectors
+- Cosine-similarity ranking
+- A minimum evidence threshold
+- An unsupported-answer path when retrieval confidence is too low
 
-```mermaid
-flowchart TD
-    A[Synthetic SOPs and guides] --> B[Parse and chunk]
-    B --> C[Embeddings and vector index]
-    D[User question] --> E[Retriever]
-    C --> E
-    E --> F[Azure OpenAI answer]
-    F --> G[Answer with citations]
-```
+## Planned next step
 
-## Production Controls
+The next version will add synthetic SOP documents, embeddings, a vector index, answer generation with citations, a small Streamlit interface and retrieval evaluation tests.
 
-- Document-level access filters
-- Source citations and retrieval scores
-- Prompt-injection and unsupported-answer handling
-- Evaluation dataset for groundedness and retrieval relevance
-- Audit logging without storing sensitive question content unnecessarily
-- Secrets supplied through managed configuration
+A production design would also require document permissions, secret management, prompt-injection controls, logging and a defined review process for source documents.
 
-## Resume Alignment
+## Why this project is here
 
-**Technologies:** Azure OpenAI, LangChain, RAG, SharePoint, Streamlit
-
-Demonstrates contextual Q&A over SOPs, report guides, process documents, and project knowledge for onboarding and grounded retrieval.
+It shows the retrieval foundation and the direction of the solution without claiming that the full GenAI application has already been built.
