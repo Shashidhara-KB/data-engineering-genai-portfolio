@@ -1,42 +1,38 @@
 # Data Engineering & GenAI Portfolio
 
-Production-minded portfolio projects demonstrating Azure data engineering, lakehouse architecture, analytics engineering, and Generative AI.
+[![CI](https://github.com/Shashidhara-KB/data-engineering-genai-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/Shashidhara-KB/data-engineering-genai-portfolio/actions/workflows/ci.yml)
 
-## About Me
+This repository contains projects I use to practise and demonstrate data engineering, Power BI and GenAI concepts. Most examples are based on the kind of finance and reporting problems I know well, but all data and business names are synthetic or public.
 
-I am a data and analytics professional with 12+ years of experience delivering enterprise reporting and data solutions. My current focus is building scalable data platforms and AI-enabled applications using Python, SQL, PySpark, Azure Databricks, Delta Lake, Power BI, Azure OpenAI, and RAG.
+I have kept the projects at different levels of completion. The status column is deliberate: a **working example** has runnable code and tests; a **reference implementation** demonstrates a useful pattern; and a **design case study** documents how I would approach a larger solution.
 
 ## Projects
 
-| Project | Business problem | Core technologies | Status |
-|---|---|---|---|
-| [Retail Sales Lakehouse](projects/retail-sales-lakehouse/) | Build a reliable, incremental analytics pipeline from raw transactions to business-ready KPIs | PySpark, Delta Lake, Medallion Architecture, data quality, pytest, GitHub Actions | Complete |
-| [FP&A Performance Management in Power BI](projects/fpa-power-bi-performance-management/) | Standardize Actual, Budget, Forecast, YTD, YTG, and full-year variance reporting | Power BI, DAX, Power Query, SQL, star schema, RLS | Complete |
-| [Azure Olympics Lakehouse](https://github.com/Shashidhara-KB/Azure) | Transform multi-file Olympics data into country, medal-efficiency, and gender-participation metrics | Azure Databricks, PySpark, Delta Lake, data quality, pytest, GitHub Actions | Complete |
-| [Finance Reporting Modernization](projects/finance-reporting-modernization/) | Re-engineer fragmented finance reporting into governed reusable layers | Azure Databricks, PySpark, Delta Lake, SQL, Power BI | Complete |
-| [FTE Data Platform & Workforce Analytics](projects/fte-workforce-analytics/) | Integrate finance and HR-style sources into governed workforce metrics | ADLS Gen2, ADF, Databricks, PySpark, Delta Lake, Power BI | Complete |
-| [FP&A Knowledge Assistant](projects/fpa-knowledge-assistant/) | Ground finance-process answers in approved synthetic SOPs and reporting guides | Azure OpenAI, LangChain, RAG, SharePoint, Streamlit | Complete |
-| [Report Navigation & KPI Help Assistant](projects/report-kpi-help-assistant/) | Explain approved KPI logic, ownership, and Power BI report navigation | OpenAI, Power BI, Streamlit, governed KPI catalogue | Complete |
-| [Budget Data Integration & Automation](projects/budget-data-integration-automation/) | Automate budget-list ingestion into validated SQL reporting layers | SharePoint, Logic Apps, Azure SQL, Power BI DirectQuery | Complete |
-| Streaming Operations Monitor | Detect operational anomalies from event streams and serve near-real-time metrics | Spark Structured Streaming, Delta Lake, Power BI | Planned |
+| Project | What is included | Status |
+|---|---|---|
+| [Retail Sales Lakehouse](projects/retail-sales-lakehouse/) | PySpark transformations, data-quality quarantine, Delta merge and unit tests | Working example |
+| [Azure Olympics Lakehouse](https://github.com/Shashidhara-KB/Azure) | Public datasets, PySpark transformations, Gold metrics and tests | Working example |
+| [FP&A Performance Management](projects/fpa-power-bi-performance-management/) | SQL star schema, DAX, Power Query and an RLS pattern | Reference implementation |
+| [Finance Reporting Modernization](projects/finance-reporting-modernization/) | A PySpark medallion pattern for finance reporting data | Reference implementation |
+| [FTE & Workforce Analytics](projects/fte-workforce-analytics/) | Workforce transformations and example DAX measures | Reference implementation |
+| [Budget Data Integration](projects/budget-data-integration-automation/) | SQL staging/final pattern and a Logic Apps workflow outline | Reference implementation |
+| [FP&A Knowledge Assistant](projects/fpa-knowledge-assistant/) | A small local retriever plus the planned RAG architecture | Prototype |
+| [KPI Help Service](projects/report-kpi-help-assistant/) | A searchable KPI catalogue with source and owner details | Prototype |
 
-## Engineering Principles
-
-- Incremental and idempotent processing
-- Explicit data-quality checks and quarantine handling
-- Business-ready dimensional outputs
-- Secure configuration with no committed secrets
-- Automated tests and CI validation
-- Clear architecture and operational documentation
-
-## Repository Structure
+## Repository layout
 
 ```text
-projects/   Portfolio projects and documentation
-.github/    Continuous-integration workflows
+projects/
+  retail-sales-lakehouse/
+  fpa-power-bi-performance-management/
+  finance-reporting-modernization/
+  fte-workforce-analytics/
+  budget-data-integration-automation/
+  fpa-knowledge-assistant/
+  report-kpi-help-assistant/
+.github/workflows/
 ```
 
-## Contact
+## How I use this repository
 
-- GitHub: [Shashidhara-KB](https://github.com/Shashidhara-KB)
-- Focus: Data Engineer / GenAI Engineer
+I add code here only when I can explain the design choices and trade-offs. My next priorities are to add visual proof for the Power BI project, expand test coverage and turn the knowledge-assistant prototype into a runnable RAG application.
