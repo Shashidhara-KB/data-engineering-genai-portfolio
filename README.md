@@ -1,23 +1,33 @@
-# Data Engineering & GenAI Portfolio
+# Power BI, FP&A, Data Engineering & GenAI Portfolio
 
 [![CI](https://github.com/Shashidhara-KB/data-engineering-genai-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/Shashidhara-KB/data-engineering-genai-portfolio/actions/workflows/ci.yml)
 
-This repository contains projects I use to practise and demonstrate data engineering, Power BI and GenAI concepts. Most examples are based on the kind of finance and reporting problems I know well, but all data and business names are synthetic or public.
+My strongest experience is in Power BI and FP&A reporting. This portfolio starts with financial reporting models, DAX, Power Query and workforce analytics, then shows related Databricks/PySpark work and exploratory GenAI prototypes.
 
-I have kept the projects at different levels of completion. A **working example** has runnable code and tests; a **reference implementation** demonstrates a useful pattern; and a **prototype** is an early implementation that I am still developing.
+The code here is **portfolio work using synthetic or public data**, not internal employer code. A **working example** includes runnable code and tests; a **reference implementation** demonstrates a design pattern; and a **prototype** is still in development.
 
-## Projects
+## Power BI & FP&A — primary focus
 
-| Project | What is included | Status |
+| Project | What it demonstrates | Status |
 |---|---|---|
-| [Finance Reporting Modernization](projects/finance-reporting-modernization/) | Runnable Bronze/Silver/Gold Spark job, quarantine, reconciliation, synthetic finance data and Power BI SQL view | Working example |
-| [Retail Sales Lakehouse](projects/retail-sales-lakehouse/) | PySpark transformations, data-quality quarantine, Delta merge and unit tests | Working example |
-| [Azure Olympics Lakehouse](https://github.com/Shashidhara-KB/Azure) | Public datasets, PySpark transformations, Gold metrics and tests | Working example |
-| [FP&A Performance Management](projects/fpa-power-bi-performance-management/) | SQL star schema, DAX, Power Query and an RLS pattern | Reference implementation |
-| [FTE & Workforce Analytics](projects/fte-workforce-analytics/) | Workforce transformations and example DAX measures | Reference implementation |
-| [Budget Data Integration](projects/budget-data-integration-automation/) | SQL staging/final pattern and a Logic Apps workflow outline | Reference implementation |
-| [FP&A Knowledge Assistant](projects/fpa-knowledge-assistant/) | A small local retriever plus the planned RAG architecture | Prototype |
-| [KPI Help Service](projects/report-kpi-help-assistant/) | A searchable KPI catalogue with source and owner details | Prototype |
+| [FP&A Performance Management](projects/fpa-power-bi-performance-management/) | SQL star schema, DAX measures, Power Query and dynamic RLS pattern for Actual/Budget/Forecast reporting | Reference implementation |
+| [FTE & Workforce Analytics](projects/fte-workforce-analytics/) | Workforce transformations and example Power BI measures | Reference implementation |
+| [Budget Data Integration](projects/budget-data-integration-automation/) | SQL staging/final pattern and a Logic Apps workflow outline for budget reporting | Reference implementation |
+
+## Data Engineering — hands-on projects
+
+| Project | What it demonstrates | Status |
+|---|---|---|
+| [Finance Reporting Modernization](projects/finance-reporting-modernization/) | Runnable Bronze/Silver/Gold Spark job, data-quality quarantine, reconciliation and reporting SQL view | Working example |
+| [Retail Sales Lakehouse](projects/retail-sales-lakehouse/) | PySpark transformations, Delta merge and tests | Working example |
+| [Azure Olympics Lakehouse](https://github.com/Shashidhara-KB/Azure) | Public data transformations, Gold metrics and tests | Working example |
+
+## GenAI — learning and prototypes
+
+| Project | What it demonstrates | Status |
+|---|---|---|
+| [FP&A Knowledge Assistant](projects/fpa-knowledge-assistant/) | Local document retrieval and a proposed RAG architecture for onboarding questions | Prototype |
+| [KPI Help Service](projects/report-kpi-help-assistant/) | Searchable KPI catalogue with source and owner details | Prototype |
 
 ## Repository layout
 
@@ -27,6 +37,8 @@ tests/      Cross-project automated tests
 .github/    CI and dependency configuration
 ```
 
-## Current priorities
+## What I am improving next
 
-I add code here only when I can explain the design choices and trade-offs. My next priorities are to add visual proof for the Power BI project and turn the knowledge-assistant prototype into a runnable RAG application.
+My priority is to add clearer Power BI model screenshots, documented DAX examples and report walkthroughs. For GenAI, I plan to extend the local retrieval prototype into a runnable RAG application with source citations and evaluation examples.
+
+I aim to describe each project's current state accurately rather than claim unverified business outcomes.
