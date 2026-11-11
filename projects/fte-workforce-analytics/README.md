@@ -1,34 +1,49 @@
-# FTE Data Platform & Workforce Analytics
+# FTE and Workforce Analytics
 
-Synthetic workforce-data platform demonstrating ingestion, validation, dimensional modelling, and Power BI measures using ADLS Gen2, ADF, Databricks, PySpark, Delta Lake, and Power BI patterns.
+**Status: Reference implementation**
 
-No employee-level or employer-confidential data is included.
+I created this example around a reporting problem I have worked with: finance FTE and HR headcount data come from different systems, use different keys and often require reconciliation before they can be shown together.
 
-## Architecture
+The design uses synthetic employee identifiers and generic entity names. It contains no employee-level or employer-confidential information.
+
+## Reporting questions
+
+- What is the month-end FTE and headcount?
+- How much did the workforce change because of joiners and leavers?
+- Which entities, functions or cost centres explain the movement?
+- Do finance and HR source totals reconcile?
+- Are there missing keys, duplicates or unexpected spikes?
+
+## Proposed flow
 
 ```mermaid
 flowchart TD
-    A[HR system extracts] --> C[ADLS Bronze]
-    B[Finance FTE extracts] --> C
-    C --> D[Databricks Silver validation]
-    D --> E[Gold workforce monthly fact]
-    E --> F[Power BI workforce analytics]
+    A["HR extract"] --> C["ADLS Bronze"]
+    B["Finance FTE extract"] --> C
+    C --> D["Databricks validation"]
+    D --> E["Silver conformed workforce"]
+    E --> F["Gold monthly fact"]
+    F --> G["Power BI semantic model"]
 ```
 
-## Model Grain
+## Model grain
 
-One record per employee surrogate key, month, entity, cost center, and employment type. Synthetic identifiers are used throughout.
+The monthly fact is designed at employee surrogate key, month, entity, cost centre and employment-type level. Dimensions provide date, entity, function, geography, cost-centre and employment hierarchies.
 
-## KPIs
+## Measures and controls
 
 - Month-end FTE and headcount
-- Joiners, leavers, and net movement
+- Joiners, leavers and net movement
 - Average FTE and base pay per FTE
-- Region, entity, function, and cost-center views
-- Data-quality exceptions and source reconciliation
+- Month-on-month and year-on-year change
+- Source row counts and control totals
+- Duplicate and missing-key exceptions
+- Threshold checks for unusual monthly movement
 
-## Resume Alignment
+## Power BI design
 
-**Technologies:** ADLS Gen2, ADF, Azure Databricks, PySpark, Delta Lake, Power BI
+The report would use a star schema with single-direction relationships, a dedicated measure table and access rules by region or entity. A reconciliation page would remain separate from the management view so data-quality exceptions are visible without crowding the executive pages.
 
-Demonstrates integration of finance and HR-style sources into governed dimensional workforce datasets with automated transformation and validation.
+## Current limitation
+
+This folder documents the model and transformation pattern, but it does not yet contain a finished PBIX/PBIP file or dashboard screenshots. I keep it labelled as a reference implementation until those assets are added.
