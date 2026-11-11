@@ -4,7 +4,7 @@
 
 This repository collects projects related to the work described in my résumé. Power BI and FP&A are my strongest areas. The data-engineering examples show how I prepare and validate reporting data with SQL, PySpark and Delta Lake. The GenAI folders are prototypes and are labelled accordingly.
 
-All examples use synthetic or public data. They do not contain employer datasets, internal code, credentials or report designs.
+All examples use synthetic data. They do not contain employer datasets, internal code, credentials or report designs.
 
 ## Power BI and FP&A
 
@@ -20,7 +20,6 @@ All examples use synthetic or public data. They do not contain employer datasets
 |---|---|---|
 | [Finance Reporting Modernization](projects/finance-reporting-modernization/) | Runnable Bronze/Silver/Gold Spark pipeline, quarantine, reconciliation and reporting view | Working example |
 | [Retail Sales Lakehouse](projects/retail-sales-lakehouse/) | PySpark transformations, Delta merge and automated tests | Working example |
-| [Azure Olympics Lakehouse](https://github.com/Shashidhara-KB/Azure) | Public-data transformations, Gold metrics and tests | Working example |
 
 ## GenAI
 
