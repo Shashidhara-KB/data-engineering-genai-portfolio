@@ -2,23 +2,35 @@
 
 **Status: Prototype**
 
-I started this project to explore a common FP&A support problem: process documents and KPI guidance exist, but users still spend time asking where to find an answer.
+I started this project to explore a common FP&A support problem: SOPs, KPI definitions and report guides exist, but users still spend time finding the right document or asking the reporting team.
 
-The code currently provides a small, dependency-free retriever that ranks local text using token overlap and cosine similarity. It is useful for testing retrieval behaviour, but it is **not yet** an Azure OpenAI, LangChain or production RAG application.
+## What works today
 
-## What is implemented
+The current code is a small local retriever. It:
 
-- Text tokenization and term-frequency vectors
-- Cosine-similarity ranking
-- A minimum evidence threshold
-- An unsupported-answer path when retrieval confidence is too low
+- tokenizes local text documents
+- builds term-frequency vectors
+- ranks passages using cosine similarity
+- applies a minimum evidence threshold
+- returns an unsupported-answer response when confidence is too low
 
-## Planned next step
+This is useful for testing retrieval behaviour, but it is not yet a complete Azure OpenAI or LangChain RAG application.
 
-The next version will add synthetic SOP documents, embeddings, a vector index, answer generation with citations, a small Streamlit interface and retrieval evaluation tests.
+## Target design
 
-A production design would also require document permissions, secret management, prompt-injection controls, logging and a defined review process for source documents.
+```mermaid
+flowchart LR
+    A["Synthetic FP&A documents"] --> B["Chunk and embed"]
+    B --> C["Vector index"]
+    D["User question"] --> C
+    C --> E["Retrieved evidence"]
+    E --> F["Answer with citations"]
+```
 
-## Why this project is here
+The next version will add synthetic process documents, embeddings, a vector index, a Streamlit interface, cited answers and a small retrieval-evaluation set. Azure OpenAI can be an optional provider, with a local mode so the project remains runnable without credentials.
 
-It shows the retrieval foundation and the direction of the solution without claiming that the full GenAI application has already been built.
+## Production considerations
+
+A workplace version would also need source permissions, secret management, document ownership, prompt-injection controls, logging, evaluation and a review process for outdated guidance.
+
+I keep this project labelled as a prototype because the public code currently demonstrates retrieval foundations, not the full application described in the target design.
